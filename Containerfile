@@ -1,6 +1,7 @@
 FROM registry.fedoraproject.org/fedora-bootc:latest
+
 COPY etc /etc
-COPY usr /usr
+
 RUN dnf install -y NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd \
 	greenboot dhcp-server greenboot-default-health-checks firewalld freeipa-client && \
 	dnf clean all && \
