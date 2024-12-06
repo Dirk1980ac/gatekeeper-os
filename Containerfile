@@ -6,11 +6,6 @@ RUN dnf install -y NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd \
 	greenboot dhcp-server greenboot-default-health-checks firewalld freeipa-client && \
 	dnf clean all && \
 	systemctl enable device-init firewalld cockpit.socket && \
-	yggdrasil -genconf -json > /etc/yggdrasil.generated.conf %% \
-	jq '.Peers = ["tls://ygg.yt:443","tls://ygg.mkg20001.io:443","tls://vpn.ltha.de:443",\
-	"tls://ygg-uplink.thingylabs.io:443","tls://supergay.network:443",\
-	"tls://[2a03:3b40:fe:ab::1]:993","tls://37.205.14.171:993"]' \
-	/etc/yggdrasil.generated.conf > /etc/yggdrasil.conf && \
 	systemctl enable yggdrasil && \
 	firewall-offline-cmd --zone=public --add-service=dhcpv6-client && \
 	firewall-offline-cmd --zone=public --add-service=mdns && \
