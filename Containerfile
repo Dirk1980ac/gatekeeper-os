@@ -1,8 +1,21 @@
+# build from fedore-bootc:latest which represents the latest Fedora release
 FROM registry.fedoraproject.org/fedora-bootc:latest
 
+# Build ID to identify the generated image
+ARG buildid
+
+# Copy prepared files into the image
 COPY etc /etc
 COPY usr /usr
 
+# Set some image labels for identification
+LABEL image.name="GAtekeeper OS"
+LABEL image.descr="A bootc based router image"
+LABEL vendor.name="Dirk Gottschalk"
+LABEL vendor.email="dirk.gottschalk1980@googlemail.com"
+LABEL image.build-id="$buildid"
+
+# Do some 'abrakadabra' do build the image.
 RUN dnf install -y NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd dhcp-server \
 	greenboot dhcp-server greenboot-default-health-checks firewalld freeipa-client && \
 	dnf clean all && \
