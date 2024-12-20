@@ -16,8 +16,9 @@ LABEL vendor.email="dirk.gottschalk1980@googlemail.com"
 LABEL image.build-id="$buildid"
 
 # Do some 'abrakadabra' do build the image.
-RUN dnf install -y NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd dhcp-server \
-	greenboot dhcp-server greenboot-default-health-checks firewalld freeipa-client && \
+RUN dnf install -y NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd \
+	dhcp-server greenboot dhcp-server greenboot-default-health-checks \
+	firewalld freeipa-client --setopt="install_weak_deps=False" && \
 	dnf clean all && \
 	systemctl enable device-init firewalld cockpit.socket && \
 	systemctl enable yggdrasil && \
