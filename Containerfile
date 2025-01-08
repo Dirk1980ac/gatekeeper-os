@@ -23,7 +23,7 @@ dnf install -y NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd \
 dnf clean all
 systemctl enable device-init firewalld cockpit.socket yggdrasil
 firewall-offline-cmd --zone=public --add-service=dhcpv6-client
-firewall-offline-cmd --zone=public --add-service=mdns 
+firewall-offline-cmd --zone=public --add-service=mdns
 firewall-offline-cmd --zone=public --add-service=ssh
 firewall-offline-cmd --new-zone=mesh
 firewall-offline-cmd --zone=mesh --add-interface=tun0
@@ -34,7 +34,7 @@ firewall-offline-cmd --policy=int-to-pub --add-egress-zone=public
 firewall-offline-cmd --policy=int-to-pub --set-target=ACCEPT
 firewall-offline-cmd --new-policy=public-to-int
 firewall-offline-cmd --policy=public-to-int --add-ingress-zone=public
-firewall-offline-cmd --policy=public-to-int --add-egress-zone=FedoraServer
+firewall-offline-cmd --policy=public-to-int --add-egress-zone=internal
 firewall-offline-cmd --policy=public-to-int --set-target=CONTINUE
 firewall-offline-cmd --new-policy=int-to-mesh
 firewall-offline-cmd --policy=int-to-mesh --add-ingress-zone=internal

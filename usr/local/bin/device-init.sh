@@ -12,4 +12,7 @@ if [ ! -f /etc/yggdrasil.conf ]; then
 		'"tls://supergay.network:443","tls://[2a03:3b40:fe:ab::1]:993",' \
 		'"tls://37.205.14.171:993"]' \
 		/etc/yggdrasil.generated.conf >/etc/yggdrasil.conf
+
+	# Restart yggdrasil after configuration changed.
+	systemctl restart yggdrasil
 fi
