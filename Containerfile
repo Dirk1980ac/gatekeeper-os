@@ -9,10 +9,9 @@ COPY etc /etc
 COPY usr /usr
 
 # Set some image labels for identification
+LABEL org.opencontainers.image.authors="Dirk Gottschalk"
 LABEL image.name="GAtekeeper OS"
 LABEL image.descr="A bootc based router image"
-LABEL vendor.name="Dirk Gottschalk"
-LABEL vendor.email="dirk.gottschalk1980@googlemail.com"
 LABEL image.build-id="$buildid"
 
 # Do some 'abrakadabra' do build the image.
