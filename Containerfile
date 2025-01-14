@@ -16,10 +16,10 @@ LABEL image.build-id="$buildid"
 
 # Do some 'abrakadabra' do build the image.
 RUN <<EOF
-dnf install -y NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd \
+dnf -y install NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd \
 	dhcp-server greenboot dhcp-server greenboot-default-health-checks \
 	firewalld freeipa-client --setopt="install_weak_deps=False"
-dnf clean all
+dnf -y clean all
 systemctl enable device-init firewalld cockpit.socket yggdrasil
 firewall-offline-cmd --zone=public --add-service=dhcpv6-client
 firewall-offline-cmd --zone=public --add-service=mdns
