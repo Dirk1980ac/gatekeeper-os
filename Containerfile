@@ -19,6 +19,10 @@ RUN <<EOF
 # Abort on error and when unbound variables are used
 set -eu
 
+# Write build-id
+mkdir -p /usr/bootc-image/
+echo "$buildid" >/usr/bootc-image/build-id
+
 #Install packages
 dnf -y install NetworkManager-tui cockpit mc htop zsh jq yggdrasil radvd \
 	dhcp-server greenboot dhcp-server greenboot-default-health-checks \
