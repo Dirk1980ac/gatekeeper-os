@@ -31,7 +31,7 @@ dnf -y clean all
 END_OF_BLOCK
 
 # Assume Raspberry PI if building aarch64. At least for now.
-RUN <<EORUN
+RUN --mount=type=bind,source=./scripts,target=/scripts <<EORUN
 set -eu
 
 if [ "$(arch)" == "aarch64" ]; then
@@ -42,6 +42,7 @@ if [ "$(arch)" == "aarch64" ]; then
 	dnf remove -y bcm2711-firmware uboot-images-armv8
 	mkdir /usr/bin/bootupctl-orig
 	mv /usr/bin/bootupctl /usr/bin/bootupctl-orig/
+	cp /scripts/bootupctl-shim /usr/bin/bootupctl
 fi
 EORUN
 
